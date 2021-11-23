@@ -1,7 +1,8 @@
 const pixelBoard = document.getElementById('pixel-board');
 const ListaDeCores = document.getElementsByClassName('color');
 const listaDePixels = document.getElementsByClassName('pixel');
-const elementSelected = document.getElementsByClassName('color')[0];
+const clearButtom = document.getElementById('clear-board');
+// const elementSelected = document.getElementsByClassName('color')[0];
 const divCor1 = document.getElementsByClassName('color')[0];
 const divCor2 = document.getElementsByClassName('color')[1];
 const divCor3 = document.getElementsByClassName('color')[2];
@@ -10,7 +11,7 @@ divCor1.style.backgroundColor = 'rgb(0,0,0)';
 divCor2.style.backgroundColor = 'rgb(90,90,90)';
 divCor3.style.backgroundColor = 'rgb(180,180,180)';
 divCor4.style.backgroundColor = 'rgb(240,240,240)';
-let cor1 = getComputedStyle(divCor1).backgroundColor;
+const cor1 = getComputedStyle(divCor1).backgroundColor;
 let cor2 = getComputedStyle(divCor2).backgroundColor;
 let cor3 = getComputedStyle(divCor3).backgroundColor;
 let cor4 = getComputedStyle(divCor4).backgroundColor;
@@ -114,3 +115,13 @@ window.addEventListener('load', adicionarQuadroPadrao);
 // Função para permitir que o user altere o tamanho do quadro;
 
 //
+
+// Função para 'limpar' o quadro o preenchendo de branco:
+
+function clearBoard() {
+  for (let i = 0; i < listaDePixels.length; i += 1) {
+    listaDePixels[i].style.backgroundColor = 'white';
+  }
+}
+
+clearButtom.addEventListener('click', clearBoard);

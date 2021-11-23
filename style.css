@@ -24,7 +24,7 @@ h1 {
 }
 
 #pixel-board {
-  margin: 20px 20px;
+  margin: 20px;
 }
 
 .pixel {
@@ -37,4 +37,14 @@ h1 {
 
 .selected {
   padding: 60px;
+}
+
+button {
+  margin: 5px;
+  margin-top: 15px;
+  font-size: 1.3em;
+  padding: 3px;
+  display: inline-block;
+  font-weight: 800;
+  border: black 1px solid;
 }
