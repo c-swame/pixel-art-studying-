@@ -1,5 +1,6 @@
 const pixelBoard = document.getElementById('pixel-board');
 const ListaDeCores = document.getElementsByClassName('color');
+const listaDePixels = document.getElementsByClassName('pixel');
 const divCor1 = document.getElementsByClassName('color')[0];
 const divCor2 = document.getElementsByClassName('color')[1];
 const divCor3 = document.getElementsByClassName('color')[2];
@@ -63,6 +64,7 @@ function colorSelector(event) {
     selecionada = cor4;
   }
   console.log(selecionada);
+  console.log(listaDePixels);
 }
 
 // atribuição da função colorSelector à paleta de cores;
@@ -72,9 +74,16 @@ for (let i = 1; i < ListaDeCores.length; i += 1) {
 
 //
 
+// Função que permite pintar o pixel-board;
+
+function pincel(event) {
+  let pixelAPintar = event.target;
+  pixelAPintar.style.backgroundColor = selecionada;
+}
+
 // função para criar o quadro ao iniciar a sessão;
 
-function adicionarQuadroPadrão() {
+function adicionarQuadroPadrao() {
   for (let i = 0; i < 5; i += 1) {
     const newLine = document.createElement('div');
     newLine.classList.add('linha-de-pixels');
@@ -83,20 +92,19 @@ function adicionarQuadroPadrão() {
     for (let index2 = 0; index2 < 5; index2 += 1) {
       const newPixel = document.createElement('div');
       newPixel.classList.add('pixel');
+      newPixel.style.backgroundColor = 'white';
       line[i].appendChild(newPixel);
     }
   }
+  // adição da função pincel aos pixels
+  for (let i2 = 0; i2 < listaDePixels.length; i2 += 1) {
+    listaDePixels[i2].addEventListener('click', pincel);
+    console.log('x');
+  }
 }
 
-window.addEventListener('load', adicionarQuadroPadrão);
+window.addEventListener('load', adicionarQuadroPadrao);
 
 // Função para permitir que o user altere o tamanho do quadro;
 
 //
-
-// Função que permite pintar o pixel-board;
-
-function pincel (event) {
-  const pixel = event.target;
-  const
-}

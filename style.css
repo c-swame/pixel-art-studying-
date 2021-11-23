@@ -28,9 +28,9 @@ h1 {
 }
 
 .pixel {
-  background-color: white;
+  display: inline-block;
   width: 40px;
   padding: 40px;
   border: black 1px solid;
-  display: inline-block;
+  margin: 1px;
 }
