@@ -35,11 +35,11 @@ h1 {
   width: 40px;
   border: black 1px solid;
   box-sizing: border-box;
-  margin: -2px 0px;
+  margin: -2px 0;
 }
 
 .selected {
-border-radius: 50%;}
+  border-radius: 50%;}
 
 button {
   margin: 5px;
