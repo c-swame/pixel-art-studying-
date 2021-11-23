@@ -17,27 +17,29 @@ h1 {
 
 .color {
   display: inline-block;
-  width: 50px;
-  padding: 50px;
+  width: 40px;
+  padding: 40px;
   border: black 1px solid;
-  margin-right: 15px;
+  border-radius: 20%;
 }
 
 #pixel-board {
   margin: 20px;
+  max-width: 400px;
 }
+
 
 .pixel {
   display: inline-block;
+  height: 40px;
   width: 40px;
-  padding: 40px;
   border: black 1px solid;
-  margin: 1px;
+  box-sizing: border-box;
+  margin: -2px 0px;
 }
 
 .selected {
-  padding: 60px;
-}
+border-radius: 50%;}
 
 button {
   margin: 5px;

@@ -91,19 +91,29 @@ function pincel(event) {
 
 // função para criar o quadro ao iniciar a sessão;
 
+// function adicionarQuadroPadrao() {
+//   for (let i = 0; i < 5; i += 1) {
+//     const newLine = document.createElement('div');
+//     newLine.classList.add('linha-de-pixels');
+//     pixelBoard.appendChild(newLine);
+//     const line = document.getElementsByClassName('linha-de-pixels');
+//     for (let index2 = 0; index2 < 25; index2 += 1) {
+//       const newPixel = document.createElement('div');
+//       newPixel.classList.add('pixel');
+//       newPixel.style.backgroundColor = 'white';
+//       line[i].appendChild(newPixel);
+//     }
+//     pixelBoard.style.maxWidth = `${40*5}px`
+//   }
+
 function adicionarQuadroPadrao() {
-  for (let i = 0; i < 5; i += 1) {
-    const newLine = document.createElement('div');
-    newLine.classList.add('linha-de-pixels');
-    pixelBoard.appendChild(newLine);
-    const line = document.getElementsByClassName('linha-de-pixels');
-    for (let index2 = 0; index2 < 5; index2 += 1) {
-      const newPixel = document.createElement('div');
-      newPixel.classList.add('pixel');
-      newPixel.style.backgroundColor = 'white';
-      line[i].appendChild(newPixel);
-    }
+  for (let index2 = 0; index2 < 25; index2 += 1) {
+    const newPixel = document.createElement('div');
+    newPixel.classList.add('pixel');
+    newPixel.style.backgroundColor = 'white';
+    pixelBoard.appendChild(newPixel);
   }
+  pixelBoard.style.maxWidth = `${40 * 5}px`;
   // adição da função pincel aos pixels
   for (let i2 = 0; i2 < listaDePixels.length; i2 += 1) {
     listaDePixels[i2].addEventListener('click', pincel);
