@@ -1,6 +1,7 @@
 const pixelBoard = document.getElementById('pixel-board');
 const ListaDeCores = document.getElementsByClassName('color');
 const listaDePixels = document.getElementsByClassName('pixel');
+const elementSelected = document.getElementsByClassName('color')[0];
 const divCor1 = document.getElementsByClassName('color')[0];
 const divCor2 = document.getElementsByClassName('color')[1];
 const divCor3 = document.getElementsByClassName('color')[2];
@@ -9,10 +10,11 @@ divCor1.style.backgroundColor = 'rgb(0,0,0)';
 divCor2.style.backgroundColor = 'rgb(90,90,90)';
 divCor3.style.backgroundColor = 'rgb(180,180,180)';
 divCor4.style.backgroundColor = 'rgb(240,240,240)';
+let cor1 = getComputedStyle(divCor1).backgroundColor;
 let cor2 = getComputedStyle(divCor2).backgroundColor;
 let cor3 = getComputedStyle(divCor3).backgroundColor;
 let cor4 = getComputedStyle(divCor4).backgroundColor;
-let selecionada;
+let selecionada = 'rgb(0,0,0)';
 // função auxiliar: gerar cores aleatórias; a cor é retornada como string "'rgb(x, y, z)'"
 function colorCreator() {
   const red = (Math.random() * 240);
@@ -56,19 +58,24 @@ for (let i = 1; i < ListaDeCores.length; i += 1) {
 // Função para selecionar cor do 'pincel'.
 function colorSelector(event) {
   const elemento = event.target;
+  document.getElementsByClassName('selected')[0].classList.remove('selected');
   if (elemento.id === divCor2.id) {
     selecionada = cor2;
+    elemento.classList.toggle('selected');
   } else if (elemento.id === divCor3.id) {
     selecionada = cor3;
-  } else {
+    elemento.classList.toggle('selected');
+  } else if (elemento.id === divCor4.id) {
     selecionada = cor4;
+    elemento.classList.toggle('selected');
+  } else {
+    selecionada = cor1;
+    elemento.classList.toggle('selected');
   }
-  console.log(selecionada);
-  console.log(listaDePixels);
 }
 
 // atribuição da função colorSelector à paleta de cores;
-for (let i = 1; i < ListaDeCores.length; i += 1) {
+for (let i = 0; i < ListaDeCores.length; i += 1) {
   ListaDeCores[i].addEventListener('click', colorSelector);
 }
 
@@ -77,7 +84,7 @@ for (let i = 1; i < ListaDeCores.length; i += 1) {
 // Função que permite pintar o pixel-board;
 
 function pincel(event) {
-  let pixelAPintar = event.target;
+  const pixelAPintar = event.target;
   pixelAPintar.style.backgroundColor = selecionada;
 }
 
@@ -99,7 +106,6 @@ function adicionarQuadroPadrao() {
   // adição da função pincel aos pixels
   for (let i2 = 0; i2 < listaDePixels.length; i2 += 1) {
     listaDePixels[i2].addEventListener('click', pincel);
-    console.log('x');
   }
 }
 
