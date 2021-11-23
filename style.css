@@ -22,3 +22,15 @@ h1 {
   border: black 1px solid;
   margin-right: 15px;
 }
+
+#pixel-board {
+  margin: 20px 20px;
+}
+
+.pixel {
+  background-color: white;
+  width: 40px;
+  padding: 40px;
+  border: black 1px solid;
+  display: inline-block;
+}
