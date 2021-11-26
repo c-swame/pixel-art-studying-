@@ -21,6 +21,7 @@ h1 {
   padding: 25px;
   border: black 1px solid;
   border-radius: 20%;
+  margin-left: 3px;
 }
 
 #pixel-board {
@@ -55,7 +56,6 @@ input {
   border: black 1px solid;
   padding: 5px;
   font-size: 1.2em;
-  color: gray;
 }
 
 #board-size {
@@ -77,6 +77,7 @@ input {
   o evento 'drag' não está ocorrendo corretamente */
   width: 200px;
   height: 10px;
+  margin-left: 10px;
   border-radius: 8px;
   background: linear-gradient(black, white);
   transition: background 0.2s ease-in-out;
@@ -89,9 +90,10 @@ input {
   width: 25px;
   height: 25px;
   border-radius: 20px;
-  background: linear-gradient(grey, grey);
+  background: radial-gradient(white, grey, grey);
 
   /* editar para ficar dinâmico considerando as cores dos elementos cores */
+  border: 2px black solid;
   opacity: 0.7;
   cursor: pointer;
 }

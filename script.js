@@ -3,15 +3,14 @@ const ListaDeCores = document.getElementsByClassName('color');
 const listaDePixels = document.getElementsByClassName('pixel');
 const clearButtom = document.getElementById('clear-board');
 const opacityButtom = document.getElementById('opacity');
+const inputBoardSize = document.getElementById('board-size');
+const newBoardButtom = document.getElementById('generate-board')
 // const elementSelected = document.getElementsByClassName('color')[0];
 const divCor1 = document.getElementsByClassName('color')[0];
 const divCor2 = document.getElementsByClassName('color')[1];
 const divCor3 = document.getElementsByClassName('color')[2];
 const divCor4 = document.getElementsByClassName('color')[3];
 divCor1.style.backgroundColor = 'rgb(0,0,0)';
-divCor2.style.backgroundColor = 'rgba(90,90,90,0.9)';
-divCor3.style.backgroundColor = 'rgba(180,180,180,0.9)';
-divCor4.style.backgroundColor = 'rgba(240,240,240,0.9)';
 let selecionada = 'rgba(0,0,0,1)';
 // função auxiliar: gerar cores aleatórias; a cor é retornada como string "'rgb(x, y, z)'"
 let opacity = 1;
@@ -22,6 +21,10 @@ function colorCreator() {
   const color = `rgba(${red}, ${green}, ${blue}, 0.99)`;
   return color;
 }
+
+divCor2.style.backgroundColor = colorCreator();
+divCor3.style.backgroundColor = colorCreator();
+divCor4.style.backgroundColor = colorCreator();
 
 //
 
@@ -82,6 +85,7 @@ function pincel(event) {
 //     pixelBoard.style.maxWidth = `${40*5}px`
 //   }
 
+
 function adicionarQuadroPadrao() {
   for (let index2 = 0; index2 < 25; index2 += 1) {
     const newPixel = document.createElement('div');
@@ -114,6 +118,41 @@ clearButtom.addEventListener('click', clearBoard);
 
 //
 
+// função para alterar o tamanho do quadro;
+let newSideSize = 5;
+
+inputBoardSize.addEventListener('change', () => {
+  if (inputBoardSize.value < 5) {
+    newSideSize = 5;
+  } else if (inputBoardSize.value > 50) {
+    newSideSize = 50;
+  } else {
+    newSideSize = inputBoardSize.value;
+  }
+});
+
+function adicionarQuadroPersonalizado() {
+  if (!inputBoardSize.value) {
+    alert('Board inválido!');
+  }
+  const newBoardSize = newSideSize ** 2;
+  const newBoard = document.createElement('section');
+  for (let index2 = 0; index2 < newBoardSize; index2 += 1) {
+    const newPixel = document.createElement('div');
+    newPixel.classList.add('pixel');
+    newPixel.style.backgroundColor = 'white';
+    newBoard.appendChild(newPixel);
+  }
+  pixelBoard.style.maxWidth = `${40 * newSideSize}px`;
+  // adição da função pincel aos pixels
+  pixelBoard.innerHTML = newBoard.innerHTML;
+  for (let i2 = 0; i2 < listaDePixels.length; i2 += 1) {
+    listaDePixels[i2].addEventListener('click', pincel);
+  }
+}
+
+newBoardButtom.addEventListener('click', adicionarQuadroPersonalizado);
+
 // Bonus MEU adicionar uma opção para alterar a borda para dotted, unset ou none, dashed, inset e outset.
 // Bonus MEW adicionar duploClick para limpar quadrado; Colocar botão para ativar essa opção, que sinalize ativado e desativado;
 // Colocar input para selecionar as cores (pode usar três range ou deixar que digitem);
@@ -133,3 +172,5 @@ opacityButtom.addEventListener('click', (event) => { // tentar adicionar um grag
   const corDoBotao = getComputedStyle(document.querySelector('.selected')).backgroundColor;
   opacityButtom.style.background = corDoBotao;
 });
+
+// Bonus MEU adicionar botões para gerar imagem espelhada do botão e para gerar imagem de cabeça para baixo;
