@@ -2,26 +2,24 @@ const pixelBoard = document.getElementById('pixel-board');
 const ListaDeCores = document.getElementsByClassName('color');
 const listaDePixels = document.getElementsByClassName('pixel');
 const clearButtom = document.getElementById('clear-board');
+const opacityButtom = document.getElementById('opacity');
 // const elementSelected = document.getElementsByClassName('color')[0];
 const divCor1 = document.getElementsByClassName('color')[0];
 const divCor2 = document.getElementsByClassName('color')[1];
 const divCor3 = document.getElementsByClassName('color')[2];
 const divCor4 = document.getElementsByClassName('color')[3];
 divCor1.style.backgroundColor = 'rgb(0,0,0)';
-divCor2.style.backgroundColor = 'rgb(90,90,90)';
-divCor3.style.backgroundColor = 'rgb(180,180,180)';
-divCor4.style.backgroundColor = 'rgb(240,240,240)';
-const cor1 = getComputedStyle(divCor1).backgroundColor;
-let cor2 = getComputedStyle(divCor2).backgroundColor;
-let cor3 = getComputedStyle(divCor3).backgroundColor;
-let cor4 = getComputedStyle(divCor4).backgroundColor;
-let selecionada = 'rgb(0,0,0)';
+divCor2.style.backgroundColor = 'rgba(90,90,90,0.9)';
+divCor3.style.backgroundColor = 'rgba(180,180,180,0.9)';
+divCor4.style.backgroundColor = 'rgba(240,240,240,0.9)';
+let selecionada = 'rgba(0,0,0,1)';
 // função auxiliar: gerar cores aleatórias; a cor é retornada como string "'rgb(x, y, z)'"
+let opacity = 1;
 function colorCreator() {
-  const red = (Math.random() * 240);
-  const green = (Math.random() * 240);
-  const blue = (Math.random() * 240);
-  const color = `rgb(${red}, ${green}, ${blue})`;
+  const red = (Math.round(Math.random() * 240));
+  const green = (Math.round(Math.random() * 240));
+  const blue = (Math.round(Math.random() * 240));
+  const color = `rgba(${red}, ${green}, ${blue}, 0.99)`;
   return color;
 }
 
@@ -31,22 +29,9 @@ function colorCreator() {
 function colorPalletChanger(event) {
   const elemento = event.target;
   const color = colorCreator();
+  console.log(color);
   elemento.style.backgroundColor = color;
-  const newColor = getComputedStyle(elemento).backgroundColor;
-  switch (elemento.id) {
-  case divCor2.id:
-    cor2 = newColor;
-    break;
-  case divCor3.id:
-    cor3 = newColor;
-    break;
-  case divCor4.id:
-    cor4 = newColor;
-    break;
-  default:
-    break;
-  }
-  console.log(newColor);
+  console.log(elemento.style.backgroundColor);
 }
 
 // atribuição da função colorPalletChanger à paleta de cores;
@@ -60,19 +45,10 @@ for (let i = 1; i < ListaDeCores.length; i += 1) {
 function colorSelector(event) {
   const elemento = event.target;
   document.getElementsByClassName('selected')[0].classList.remove('selected');
-  if (elemento.id === divCor2.id) {
-    selecionada = cor2;
-    elemento.classList.toggle('selected');
-  } else if (elemento.id === divCor3.id) {
-    selecionada = cor3;
-    elemento.classList.toggle('selected');
-  } else if (elemento.id === divCor4.id) {
-    selecionada = cor4;
-    elemento.classList.toggle('selected');
-  } else {
-    selecionada = cor1;
-    elemento.classList.toggle('selected');
-  }
+  elemento.classList.toggle('selected');
+  selecionada = getComputedStyle(elemento).backgroundColor;
+  const corDoBotao = getComputedStyle(document.querySelector('.selected')).backgroundColor;
+  opacityButtom.style.background = corDoBotao;
 }
 
 // atribuição da função colorSelector à paleta de cores;
@@ -135,3 +111,25 @@ function clearBoard() {
 }
 
 clearButtom.addEventListener('click', clearBoard);
+
+//
+
+// Bonus MEU adicionar uma opção para alterar a borda para dotted, unset ou none, dashed, inset e outset.
+// Bonus MEW adicionar duploClick para limpar quadrado; Colocar botão para ativar essa opção, que sinalize ativado e desativado;
+// Colocar input para selecionar as cores (pode usar três range ou deixar que digitem);
+
+//
+
+// Bonus MEU adicinar botão para alterar o tom/opacidade da cor selecionada;
+opacityButtom.addEventListener('click', (event) => { // tentar adicionar um grag como evento
+  opacity = event.target.value;
+  const elementoAAlterar = document.querySelector('.selected');
+  const corAAlterar = getComputedStyle(elementoAAlterar).backgroundColor;
+  const arrayCorAAlterar = corAAlterar.split(',');
+  arrayCorAAlterar[3] = ` ${opacity})`;
+  const arrayNovaCor = arrayCorAAlterar;
+  const novaCor = arrayNovaCor.join();
+  document.querySelector('.selected').style.backgroundColor = novaCor;
+  const corDoBotao = getComputedStyle(document.querySelector('.selected')).backgroundColor;
+  opacityButtom.style.background = corDoBotao;
+});

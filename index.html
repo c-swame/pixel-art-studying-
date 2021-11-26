@@ -4,24 +4,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Paleta de Cores</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 id="title">Paleta de Cores</h1>
-  <section>
-    <div id="color-palette">
+  <header>
+    <h1 id="title">Paleta de Cores</h1>
+  </header>
+  <section id="color-palette">
       <div class="color selected" id="color1"> </div>
       <div class="color" id="color2"> </div>
       <div class="color" id="color3"> </div>
       <div class="color" id="color4"> </div>
+    <input id="opacity" name="opacity" type="range" min="0.01" max="0.99" step='0.01'/>
+  </section>
+  <nav>
+    <!-- 
+    * As propriedades do imput foram vista no link que se segue e em monitorias prévias com Thalles Carneiro.
+    * Link: https://www.w3schools.com/html/html_form_attributes.asp
+    */ -->
+    <div class="inline">
+      <label for="board-size">Novo Quadro:
+        <input id="board-size" name="generate-new-board" type="number" placeholder="5-50" min="5" max="50" step="1"></imput>
+        </label>
+        <button type="button" id='generate-board'>Gerar Novo Quadro</button>
     </div>
-  </section>
-  <section>
+    <button type="button"> </button>
     <button type="button" id="clear-board">Limpar</button>
-    <button type="button"> </button>
-    <button type="button"> </button>
-  </section>
+  </nav>
   <section id="pixel-board">
   
   </section>
