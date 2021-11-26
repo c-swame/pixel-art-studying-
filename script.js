@@ -4,7 +4,7 @@ const listaDePixels = document.getElementsByClassName('pixel');
 const clearButtom = document.getElementById('clear-board');
 const opacityButtom = document.getElementById('opacity');
 const inputBoardSize = document.getElementById('board-size');
-const newBoardButtom = document.getElementById('generate-board')
+const newBoardButtom = document.getElementById('generate-board');
 // const elementSelected = document.getElementsByClassName('color')[0];
 const divCor1 = document.getElementsByClassName('color')[0];
 const divCor2 = document.getElementsByClassName('color')[1];
@@ -84,7 +84,6 @@ function pincel(event) {
 //     }
 //     pixelBoard.style.maxWidth = `${40*5}px`
 //   }
-
 
 function adicionarQuadroPadrao() {
   for (let index2 = 0; index2 < 25; index2 += 1) {
