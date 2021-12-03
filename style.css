@@ -1,3 +1,9 @@
+/*
+Está com um problema quando coloca alguns tamanho de quadro de pixel.
+Acredito ser pelo limite da página e pela margem esquerada;
+centralizar o body e tirar a margem e ver se resolve.
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +33,8 @@ h1 {
 #pixel-board {
   margin: 20px;
   max-width: 400px;
+  border: black 1px solid;
+  box-sizing: content-box;
 }
 
 
@@ -37,6 +45,14 @@ h1 {
   border: black 1px solid;
   box-sizing: border-box;
   margin: -2px 0;
+}
+
+.no-border {
+  border: none;
+}
+
+.circle {
+  border-radius: 50%;
 }
 
 .selected {
